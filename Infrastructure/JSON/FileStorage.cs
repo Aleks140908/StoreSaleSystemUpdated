@@ -1,0 +1,107 @@
+﻿using StoreSaleSystemUpdated.Domain.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
+
+namespace StoreSaleSystemUpdated.Infrastructure.JSON
+{
+    public class FileStorage
+    {
+        public List<Product> Products { get; set; } = new();
+        public List<Category> Categories { get; set; } = new();
+        public List<Customer> Customers { get; set; } = new();
+        public List<Sale> Sales { get; set; } = new();
+        public List<SaleItem> SaleItems { get; set; } = new();
+        public List<PromoCode> PromoCodes { get; set; } = new();
+
+        private readonly string path;
+
+
+
+        public FileStorage()
+        {
+            path = string.Empty;
+        }
+
+        public FileStorage(string Filepath)
+        {
+            path = Filepath;
+        }
+
+        public FileStorage Load()
+        {
+            if (!File.Exists(path))
+            {
+                return this;
+            }
+
+            var json = File.ReadAllText(path);
+
+            var storage = JsonSerializer.Deserialize<FileStorage>(json,
+                new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+
+            if (storage == null)
+            {
+                return this;
+            }
+
+            Products = storage.Products ?? new();
+            Categories = storage.Categories ?? new();
+            Customers = storage.Customers ?? new();
+            Sales = storage.Sales ?? new();
+            SaleItems = storage.SaleItems ?? new();
+            PromoCodes = storage.PromoCodes ?? new();
+
+            return this;
+            /*
+            if (!File.Exists(path))
+            {
+                return this;
+            }
+
+            var json = File.ReadAllText(path);
+
+            var storage = JsonSerializer.Deserialize<FileStorage>(json, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+
+            return storage ?? this;
+            */
+        }
+
+        public void Save()
+        {
+            Console.WriteLine(Path.GetFullPath(path));
+
+            var directory = Path.GetDirectoryName(path);
+
+            if (!string.IsNullOrEmpty(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
+            var json = JsonSerializer.Serialize(this, new JsonSerializerOptions
+            {
+                WriteIndented = true
+            });
+
+            File.WriteAllText(path, json);
+            /*
+            var json = JsonSerializer.Serialize(this, new JsonSerializerOptions
+            {
+                WriteIndented = true
+            });
+
+            File.WriteAllText(path, json);
+            */
+
+        }
+    }
+}
