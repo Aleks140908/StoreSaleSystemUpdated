@@ -15,7 +15,7 @@ namespace StoreSaleSystemUpdated.Infrastructure.SQL
             var optionsBuilder = new DbContextOptionsBuilder<StoreDbContext>();
 
             optionsBuilder.UseSqlServer(
-                "Server=DESKTOP-2RHI8S2\\SQLEXPRESS;Database=SaleSystem;Integrated Security=True;TrustServerCertificate=True;");
+                "Server=DESKTOP-2RHI8S2\\SQLEXPRESS;Database=SaleSystemUpdated;Integrated Security=True;TrustServerCertificate=True;");
 
             return new StoreDbContext(optionsBuilder.Options);
         }

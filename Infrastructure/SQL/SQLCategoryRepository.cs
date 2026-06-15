@@ -29,7 +29,6 @@ namespace StoreSaleSystemUpdated.Infrastructure.SQL
         public Category? GetById(int id)
         {
             return context.Categories
-                .AsNoTracking()
                 .FirstOrDefault(c => c.Id == id);
         }
 
@@ -42,7 +41,7 @@ namespace StoreSaleSystemUpdated.Infrastructure.SQL
 
         public void Update(Category category)
         {
-            context.Categories.Update(category);
+           // context.Categories.Update(category);
             context.SaveChanges();
         }
 

@@ -2,6 +2,7 @@
 using StoreSaleSystemUpdated.Application.Interfaces;
 using StoreSaleSystemUpdated.Application.Services;
 using StoreSaleSystemUpdated.ConsoleUI;
+using StoreSaleSystemUpdated.Domain.Entities;
 using StoreSaleSystemUpdated.Infrastructure.JSON;
 using StoreSaleSystemUpdated.Infrastructure.SQL;
 using System;
@@ -35,7 +36,7 @@ namespace StoreSaleSystemUpdated
             //ui.Run();
 
 
-            var context = new StoreDbContext();
+           using var context = new StoreDbContext();
 
             // repositories
             IProductRepository productRepo = new SQLProductRepository(context);
@@ -54,6 +55,7 @@ namespace StoreSaleSystemUpdated
             // UI
             var ui = new SaleUI(productService, categoryService, promoService, saleService);
             ui.Run();
+            
         }
     }
 }

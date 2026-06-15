@@ -32,7 +32,6 @@ namespace StoreSaleSystemUpdated.Infrastructure.SQL
                 .ThenInclude(i => i.Product)
                 .Include(s => s.Customer)
                 .Include(s => s.PromoCode)
-                .AsNoTracking()
                 .FirstOrDefault(s => s.Id == id);
         }
 
@@ -49,7 +48,7 @@ namespace StoreSaleSystemUpdated.Infrastructure.SQL
 
         public void Update(Sale sale)
         {
-            context.Sales.Update(sale);
+           // context.Sales.Update(sale);
             context.SaveChanges();
 
         }

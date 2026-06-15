@@ -29,7 +29,6 @@ namespace StoreSaleSystemUpdated.Infrastructure.SQL
         public PromoCode? GetById(int id)
         {
             return context.PromoCodes
-                .AsNoTracking()
                 .FirstOrDefault(p => p.Id == id);
         }
 

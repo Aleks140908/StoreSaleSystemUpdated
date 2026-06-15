@@ -25,7 +25,7 @@ namespace StoreSaleSystemUpdated.Infrastructure.SQL
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer(
-                    "Server=DESKTOP-2RHI8S2\\SQLEXPRESS;Database=SaleSystem;Integrated Security=True;TrustServerCertificate=True;");
+                    "Server=DESKTOP-2RHI8S2\\SQLEXPRESS;Database=SaleSystemUpdated;Integrated Security=True;TrustServerCertificate=True;");
             }
         }
 

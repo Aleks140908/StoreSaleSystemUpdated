@@ -28,7 +28,6 @@ namespace StoreSaleSystemUpdated.Infrastructure.SQL
         public Customer? GetById(int id)
         {
             return context.Customers
-                .AsNoTracking()
                 .FirstOrDefault(c => c.Id == id);
         }
 
@@ -41,7 +40,7 @@ namespace StoreSaleSystemUpdated.Infrastructure.SQL
 
         public void Update(Customer customer)
         {
-            context.Customers.Update(customer);
+            //context.Customers.Update(customer);
             context.SaveChanges();
         }
 

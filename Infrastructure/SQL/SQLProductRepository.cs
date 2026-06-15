@@ -41,7 +41,7 @@ namespace StoreSaleSystemUpdated.Infrastructure.SQL
 
         public void Update(Product product)
         {
-            context.Products.Update(product);
+           // context.Products.Update(product);
             context.SaveChanges();
         }
 
